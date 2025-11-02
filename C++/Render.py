@@ -7,7 +7,7 @@ from PIL import Image
 import tkinter as tk
 from tkinter import colorchooser
 
-def render(resolution=(1280,720), samples=32, color=(195,195,195), n_bits=32):
+def render(resolution=(1280,720), samples=32, color=(195,195,195), n_bits=32, save=True):
     data, tmp = os.pipe()
     t = time.time()
     os.write(tmp, bytes(f'{resolution[0]} {resolution[1]} {samples}\n',"utf-8"))
@@ -27,7 +27,8 @@ def render(resolution=(1280,720), samples=32, color=(195,195,195), n_bits=32):
             img.putpixel((x, y), (r, g, b))
     print(f'Image rendered in {time.time() - t}s')
     img.show("Rendered Image")
-    img.save(f'./Images/{np.random.randint(0,2**n_bits)}.png')
+    if save:
+        img.save(f'./Images/{np.random.randint(0,2**n_bits)}.png')
 
 def pick_color():
     color = colorchooser.askcolor(title="Choose sphere color")
@@ -43,5 +44,5 @@ if __name__ == "__main__":
     color = pick_color()
     window.destroy()
     if color != None:
-        render(color=color)
+        render(color=color, save=False)
     
