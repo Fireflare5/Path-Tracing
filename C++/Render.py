@@ -34,12 +34,14 @@ def pick_color():
     if color[1]:
         return color[0]
     else:
-        return (195,195,195)
+        return None
 
 if __name__ == "__main__":
     window = tk.Tk()
+    window.focus_force()
     window.withdraw()
     color = pick_color()
     window.destroy()
-    render(color=color)
+    if color != None:
+        render(color=color)
     
