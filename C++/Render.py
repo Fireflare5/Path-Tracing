@@ -44,5 +44,5 @@ if __name__ == "__main__":
     color = pick_color()
     window.destroy()
     if color != None:
-        render(color=color, save=False)
+        render(color=color, save=True)
     

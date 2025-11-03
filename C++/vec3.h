@@ -169,4 +169,8 @@ inline double sign(double t) {
     return (t != 0) ? abs(t)/t : 0.0;
 }
 
+inline double rsqrt(double t) {
+    return 1.0 / std::sqrt(t);
+}
+
 #endif
